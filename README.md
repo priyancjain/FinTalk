@@ -1,5 +1,15 @@
 # Finance Assistant
 
+## UI Samples
+
+Below are some screenshots to give you a feel for the Finance Assistant user interface:
+
+| Home Page | Error Handling | Data Blackout Example |
+|-----------|---------------|----------------------|
+| ![Home Page](images/image1.png) <br> *Home page with market question input and features* | ![Error Handling](images/image2.png) <br> *Clear error message in conversation history* | ![Data Blackout](images/image3.png) <br> *Summary showing data blackout scenario* |
+
+---
+
 Finance Assistant is an AI-powered, multi-agent system that provides market briefs for stocks, including text and voice summaries. It uses a modular microservices architecture with FastAPI agents, an orchestrator, and a Streamlit UI. The project supports both local and Docker-based deployment.
 
 ## Features
