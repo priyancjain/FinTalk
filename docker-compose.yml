@@ -1,0 +1,56 @@
+version: "3.9"
+services:
+  api_agent:
+    build:
+      context: .
+      dockerfile: backend/agents/api_agent/Dockerfile
+    ports:
+      - "8001:8001"
+    environment:
+      - ALPHA_VANTAGE_KEY=3XSOHH3BSRQABXRZ
+
+  scraping_agent:
+    build:
+      context: .
+      dockerfile: backend/agents/scraping_agent/Dockerfile
+    ports:
+      - "8002:8002"
+    environment:
+      - ALPHA_VANTAGE_KEY=3XSOHH3BSRQABXRZ
+
+  retrieval_agent:
+    build:
+      context: .
+      dockerfile: backend/agents/retrieval_agent/Dockerfile
+    ports:
+      - "8003:8003"
+
+  language_agent:
+    build:
+      context: .
+      dockerfile: backend/agents/language_agent/Dockerfile
+    ports:
+      - "8005:8005"
+    environment:
+      - GOOGLE_API_KEY=AIzaSyDiyhTbfx1sAUSfDUa8h9O0ZhBMucXYFPE
+
+  orchestrator:
+    build:
+      context: .
+      dockerfile: backend/orchestrator/Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - api_agent
+      - scraping_agent
+      - retrieval_agent
+      - language_agent
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    depends_on:
+      - orchestrator 
