@@ -1,0 +1,11 @@
+streamlit
+requests
+gtts
+sentence-transformers
+torch==2.0.1
+scipy
+fastapi
+uvicorn
+google-generativeai
+
+
