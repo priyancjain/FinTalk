@@ -6,7 +6,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = FastAPI()
-ALPHA_VANTAGE_KEY = os.getenv("3XSOHH3BSRQABXRZ")
+ALPHA_VANTAGE_KEY = os.getenv("ALPHA_VANTAGE_KEY")
+
+if not ALPHA_VANTAGE_KEY:
+    raise ValueError("ALPHA_VANTAGE_KEY environment variable is not set")
 
 @app.get("/ping")
 def ping():
@@ -23,6 +26,11 @@ def get_news(ticker: str = Query(..., description="Stock ticker like AAPL, TSM")
         response = requests.get(url)
         data = response.json()
 
+        # Check for API errors
+        if "Error Message" in data:
+            return {"error": f"Alpha Vantage API error: {data['Error Message']}"}
+        if "Note" in data:
+            return {"error": f"Alpha Vantage API note: {data['Note']}"}
         if "feed" not in data:
             return {"error": "No news found or API limit exceeded."}
 
