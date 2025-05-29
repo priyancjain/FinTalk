@@ -7,7 +7,7 @@ services:
     ports:
       - "8001:8001"
     environment:
-      - ALPHA_VANTAGE_KEY=3XSOHH3BSRQABXRZ
+      - ALPHA_VANTAGE_KEY=your alpha vintage key
 
   scraping_agent:
     build:
@@ -16,7 +16,7 @@ services:
     ports:
       - "8002:8002"
     environment:
-      - ALPHA_VANTAGE_KEY=3XSOHH3BSRQABXRZ
+      - ALPHA_VANTAGE_KEY=alpha vintage key
 
   retrieval_agent:
     build:
@@ -32,7 +32,7 @@ services:
     ports:
       - "8005:8005"
     environment:
-      - GOOGLE_API_KEY=AIzaSyDiyhTbfx1sAUSfDUa8h9O0ZhBMucXYFPE
+      - GOOGLE_API_KEY=google api key
 
   orchestrator:
     build:
